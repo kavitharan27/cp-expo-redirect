@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CP-EXPO Event</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Opening CP-EXPO App...</h2>
+    <p>If nothing happens, you'll be redirected shortly.</p>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const eventId = params.get("eventId");
+
+      // Delay to let this message show before redirecting
+      setTimeout(() => {
+        // Try opening the app
+        window.location.href = "cp-expo://event?id=" + eventId;
+
+        // After another 2s, show fallback message
+        setTimeout(() => {
+          document.body.innerHTML = `
+            <h2>Get the CP-EXPO App</h2>
+            <p>To view this event, please download the <strong>CP-EXPO</strong> app from the Play Store.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.yourcompany.cpexpo" target="_blank">
+              <button style="padding: 10px 20px; font-size: 16px;">Go to Play Store</button>
+            </a>
+          `;
+        }, 2000);
+      }, 500); // Initial delay before attempting app open
+    </script>
+  </body>
+</html>
